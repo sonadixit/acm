@@ -1,0 +1,29 @@
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerNodePool
+metadata: 
+  annotations:
+    cnrm.cloud.google.com/project-id: {{ .Values.projectname }}
+    #cnrm.cloud.google.com/state-into-spec: {{ .Values.ContainerCluster.stateintospec }}
+  name: {{ .Values.ContainerNodePool.name }}
+  namespace: {{ .Values.Namespace.name }}
+spec:
+  location: {{ .Values.ContainerNodePool.location }}
+  autoscaling:
+    minNodeCount: {{ .Values.ContainerNodePool.autoscalingmin }}
+    maxNodeCount: {{ .Values.ContainerNodePool.autoscalingmax }}
+  nodeConfig: 
+    machineType: {{ .Values.ContainerNodePool.nodeConfig.machineType }}
+    diskSizeGb: {{ .Values.ContainerNodePool.nodeConfig.diskSizeGb }}
+    diskType: {{ .Values.ContainerNodePool.nodeConfig.diskType }}
+    preemptible: {{ .Values.ContainerNodePool.nodeConfig.preemptible }}
+    minCpuPlatform: {{ .Values.ContainerNodePool.nodeConfig.minCpuPlatform }}
+    oauthScopes:
+      - "https://www.googleapis.com/auth/logging.write"
+      - "https://www.googleapis.com/auth/monitoring"
+    metadata:
+      disable-legacy-endpoints: "true"
+  management:
+    autoRepair: {{ .Values.ContainerNodePool.management.autoRepair }}
+    autoUpgrade: {{ .Values.ContainerNodePool.management.autoUpgrade }}
+  clusterRef:
+    name: {{ .Values.ContainerNodePool.clusterRef.name }} 

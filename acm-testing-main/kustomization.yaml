@@ -1,0 +1,21 @@
+helmCharts:
+- name: pubsub
+  releaseName: pubsub-team3
+  namespace: default
+  valuesFile: gcp_resources/pubsub_values.yaml
+- name: compinstance
+  releaseName: computeinstance-team3
+  namespace: default
+  valuesFile: gcp_resources/computeinstance_values.yaml
+- name: storagepub
+  releaseName: pubstorage-team3
+  namespace: default
+  valuesFile: gcp_resources/storage_values.yaml
+- name: googlekcluster
+  releaseName: cluster-team3
+  namespace: default
+  valuesFile: gcp_resources/gkecluster_values.yaml
+- name: acms
+  releaseName: acm-team3
+  namespace: default
+  valuesFile: gcp_resources/acm_values.yaml

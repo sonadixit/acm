@@ -1,0 +1,6 @@
+apiVersion: v2
+name: acms
+description: A Helm chart for ACM Deployement
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

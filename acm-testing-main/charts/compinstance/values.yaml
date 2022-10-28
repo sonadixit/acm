@@ -1,0 +1,29 @@
+projectId: us-gcp-ame-its-23a8a-sbx-1 
+
+region: us-east1
+
+location: us-east1-c
+
+zone: us-east1-c
+
+namespace: default
+
+compInstance:
+  name: "configcomputeinstance"
+  zone: "us-east1-c"
+  machinetype: "n1-standard-2"
+
+compDisk:
+  name: "configcomputedisk"
+  type: "pd-ssd"
+
+replicazone:
+  eastb: "us-east1-b"
+  eastc: "us-east1-c"
+
+compInstanceTemplate:
+  name: "configcomputeinstancetemplate"
+  machinetype: "n1-standard-1"
+
+externalNetwork:
+  name: "computeinstance-dep-fromtemplate-1"

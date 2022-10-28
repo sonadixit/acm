@@ -1,0 +1,8 @@
+project: us-gcp-ame-its-23a8a-sbx-1
+
+Namespace:
+  name: team3-product-ns
+
+storage:
+  name: "team3-storagebucket"
+  label: "team3"

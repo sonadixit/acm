@@ -1,0 +1,35 @@
+projectname: us-gcp-ame-its-23a8a-sbx-1
+
+Namespace:
+  name: team3-product-ns
+
+ContainerNodePool:
+  name: team3-nodepool
+  location: us-east1-c
+  autoscalingmin: 5
+  autoscalingmax: 6
+  nodeConfig:
+    machineType: n1-standard-1
+    diskSizeGb: 100
+    diskType: pd-standard
+    preemptible: false
+    minCpuPlatform: Intel Haswell
+    disablelegacyendpoints: true
+  management:
+    autoRepair: true
+    autoUpgrade: true
+  clusterRef:
+    name: team3-application-gke
+
+ContainerCluster:
+  stateintospec: absent
+  identityServiceConfig: true
+  name: team3-application-gke
+  location: us-east1-c
+  initialNodeCount: 5
+  workloadIdentityConfig:
+    workloadPool: us-gcp-ame-its-23a8a-sbx-1.svc.id.goog
+  configConnectorConfigenabled: true
+  networkRef: a-dep-network
+  subnetworkRef: a-dep-network
+  serviceAccountRef: annu-7299@us-gcp-ame-its-23a8a-sbx-1.iam.gserviceaccount.com

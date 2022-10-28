@@ -1,0 +1,57 @@
+projectid: us-gcp-ame-its-23a8a-sbx-1
+namespace: team3-product
+projectRef: projects/us-gcp-ame-its-23a8a-sbx-1
+
+Namespace:
+  name: team3-product
+ContainerCluster:
+  stateintospec: absent
+  name: team3-cluster
+  identityServiceConfig: true
+  location: us-central1
+  initialNodeCount: 3
+  workloadPool: us-gcp-ame-its-23a8a-sbx-1.svc.id.goog
+  networkRef: https://compute.googleapis.com/v1/projects/us-gcp-ame-its-23a8a-sbx-1/networks/default
+  subnetworkRef: https://compute.googleapis.com/v1/projects/us-gcp-ame-its-23a8a-sbx-1/subnetworks/default
+  addonsConfig:
+  configConnectorConfig: true
+  serviceAccountRef: annu-7299@us-gcp-ame-its-23a8a-sbx-1.iam.gserviceaccount.com
+
+GKEHubFeature:
+  name: configmanagement
+  location: global
+  resourceID: configmanagement
+
+GKEHubFeatureMembership:
+
+  location: global
+  name: team3-featuremembership
+  membershipRef: projects/us-gcp-ame-its-23a8a-sbx-1/locations/global/memberships/team3-membership
+  featureRef: projects/us-gcp-ame-its-23a8a-sbx-1/locations/global/features/configmanagement
+
+  sourceFormat: unstructured
+  git:
+    syncRepo: "git@github.com:annu-deloitte/acm-testing.git"
+    syncBranch: "main"
+    policyDir: ""
+    syncWaitSecs: "20"
+    syncRev: "HEAD"
+    secretType: "ssh"
+  policyController:
+    enabled: true
+    referentialRulesEnabled: true
+    logDeniesEnabled: true
+    templateLibraryInstalled: true
+    auditIntervalSeconds: "20"
+  binauthz: true
+  hierarchyController:
+    enabled: true
+    enablePodTreeLabels: true
+    enableHierarchicalResourceQuota: true
+
+GKEHubMembership:
+
+  name: team3-membership
+  location: global
+  authorityissuer: https://container.googleapis.com/v1/projects/us-gcp-ame-its-23a8a-sbx-1/locations/us-central1/clusters/team3-cluster-gke
+  gkeCluster: https://container.googleapis.com/v1beta1/projects/us-gcp-ame-its-23a8a-sbx-1/locations/us-central1/clusters/team3-cluster-gke

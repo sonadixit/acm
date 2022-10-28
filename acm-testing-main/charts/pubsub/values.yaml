@@ -1,0 +1,7 @@
+project: us-gcp-ame-its-23a8a-sbx-1
+
+Namespace:
+  name: default
+pubSub: 
+  name: "pubsub1-team3"
+  label: "team3"

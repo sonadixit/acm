@@ -1,0 +1,10 @@
+project: us-gcp-ame-its-23a8a-sbx-1
+
+Namespace:
+  name: default
+storage:
+  name: "storage-team3"
+  label: "team3"
+
+
+

@@ -1,0 +1,44 @@
+
+projectid: us-gcp-ame-its-23a8a-sbx-1
+namespace: team3-product-ns
+projectRef: projects/us-gcp-ame-its-23a8a-sbx-1
+
+
+GKEHubFeature:
+  name: configmanagement
+  location: global
+  resourceID: configmanagement
+
+GKEHubFeatureMembership:
+
+  location: global
+  name: team3-featuremembership
+  membershipRef: projects/us-gcp-ame-its-23a8a-sbx-1/locations/global/memberships/team3-membership
+  featureRef: projects/us-gcp-ame-its-23a8a-sbx-1/locations/global/features/configmanagement
+
+  sourceFormat: unstructured
+  git:
+    syncRepo: "https://github.com/ansh-deloitte/sample-app-project-team3.git"
+    syncBranch: "main"
+    policyDir: "./release"
+    syncWaitSecs: "20"
+    syncRev: "HEAD"
+    secretType: "none"
+  policyController:
+    enabled: true
+    referentialRulesEnabled: true
+    logDeniesEnabled: true
+    templateLibraryInstalled: true
+    auditIntervalSeconds: "20"
+  binauthz: true
+  hierarchyController:
+    enabled: true
+    enablePodTreeLabels: true
+    enableHierarchicalResourceQuota: true
+
+GKEHubMembership:
+
+  name: team3-membership
+  location: global
+  authorityissuer: https://container.googleapis.com/v1/projects/us-gcp-ame-its-23a8a-sbx-1/locations/us-east1-c/clusters/team3-application-gke
+  gkeCluster: https://container.googleapis.com/v1beta1/projects/us-gcp-ame-its-23a8a-sbx-1/locations/us-east1-c/clusters/team3-application-gke

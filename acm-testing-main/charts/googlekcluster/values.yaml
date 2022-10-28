@@ -1,0 +1,34 @@
+# Default values for GoogleK8Cluster.
+# Declare variables to be passed into your templates.
+projectname: us-gcp-ame-its-23a8a-sbx-1
+
+Namespace:
+  name: te
+
+ContainerNodePool:
+  name: nodepool-group33
+  location: us-east1-c
+  autoscalingmin: 1
+  autoscalingmax: 3
+  nodeConfig:
+    machineType: n1-standard-1
+    diskSizeGb: 100
+    diskType: pd-standard
+    preemptible: false
+    minCpuPlatform: Intel Haswell
+    disablelegacyendpoints: true
+  management:
+    autoRepair: true
+    autoUpgrade: true
+  clusterRef:
+    name: containernodepool-cluster-group33
+
+ContainerCluster:
+  name: containernodepool-cluster-group33
+  location: us-east1-c
+  initialNodeCount: 1
+  workloadIdentityConfig:
+    workloadPool: us-gcp-ame-its-23a8a-sbx-1.svc.id.goog
+  configConnectorConfigenabled: true
+  networkRef: a-dep-network
+  subnetworkRef: a-dep-network

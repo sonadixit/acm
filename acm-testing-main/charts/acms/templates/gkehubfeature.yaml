@@ -1,0 +1,12 @@
+apiVersion: gkehub.cnrm.cloud.google.com/v1beta1
+kind: GKEHubFeature
+metadata:
+  name: {{ .Values.GKEHubFeature.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  projectRef:
+    external: {{ .Values.projectRef }}
+  location: {{ .Values.GKEHubFeature.location }}
+  # The resourceID must be "configmanagement" if you want to use Anthos config
+  # management feature.
+  resourceID: {{ .Values.GKEHubFeature.resourceID }}
